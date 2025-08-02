@@ -3,9 +3,28 @@ import Link from "next/link";
 import React from "react";
 
 const Navbar = () => {
+  const navManu = (
+    <>
+      <li>
+        <Link href={"/"}>Home</Link>
+      </li>
+      <li>
+        <Link href={"/about"}>About</Link>
+      </li>
+      <li>
+        <Link href={"/services"}>Services</Link>
+      </li>
+      <li>
+        <Link href={"/bolg"}>Blog</Link>
+      </li>
+      <li>
+        <Link href={"/contact"}>Contact</Link>
+      </li>
+    </>
+  );
   return (
     <div>
-      <div className="navbar bg-base-100 shadow-sm">
+      <div className="navbar bg-base-100 shadow-sm w-8/12 mx-auto mb-5">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -28,55 +47,19 @@ const Navbar = () => {
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
-            </ul>
+            >{navManu}</ul>
           </div>
           <Link href={"/"} className="btn btn-ghost text-xl">
-            <Image src={"/assets/logo.svg"} width={50} height={50} alt="logo" />
+            <Image src={"/assets/logo.svg"} width={60} height={60} alt="logo" />
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+            {navManu}
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <a className="btn btn-outline border-[#FF3811] text-[#FF3811] rounded-sm hover:bg-[#FF3811] hover:text-white">Appointment</a>
         </div>
       </div>
     </div>
