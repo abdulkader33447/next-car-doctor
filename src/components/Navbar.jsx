@@ -15,10 +15,16 @@ const Navbar = () => {
         <Link href={"/services"}>Services</Link>
       </li>
       <li>
-        <Link href={"/bolg"}>Blog</Link>
+        <Link href={"/blog"}>Blog</Link>
       </li>
       <li>
         <Link href={"/contact"}>Contact</Link>
+      </li>
+      <li>
+        <Link href={"/register"}>Sign Up</Link>
+      </li>
+      <li>
+        <Link href={"/login"}>Login</Link>
       </li>
     </>
   );
@@ -47,19 +53,21 @@ const Navbar = () => {
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-            >{navManu}</ul>
+            >
+              {navManu}
+            </ul>
           </div>
           <Link href={"/"} className="btn btn-ghost text-xl">
-            <Image src={"/assets/logo.svg"} width={60} height={60} alt="logo" />
+            <Image src={"/assets/logo.svg"} alt="logo" width={64} height={60} />
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            {navManu}
-          </ul>
+          <ul className="menu menu-horizontal px-1">{navManu}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn btn-outline border-[#FF3811] text-[#FF3811] rounded-sm hover:bg-[#FF3811] hover:text-white">Appointment</a>
+          <a className="btn btn-outline border-[#FF3811] text-[#FF3811] rounded-sm hover:bg-[#FF3811] hover:text-white">
+            Appointment
+          </a>
         </div>
       </div>
     </div>
