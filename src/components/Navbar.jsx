@@ -1,9 +1,20 @@
+"use client";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const navManu = (
+  const { data: session, status } = useSession();
+  console.log(session);
+
+  const handleLogOut = async (e) => {
+    e.preventDefault();
+    await signOut({ redirect: false });
+    toast.success("Logged out successfully!", { duration: 4000 });
+  };
+  const navMenu = (
     <>
       <li>
         <Link href={"/"}>Home</Link>
@@ -20,12 +31,23 @@ const Navbar = () => {
       <li>
         <Link href={"/contact"}>Contact</Link>
       </li>
-      <li>
-        <Link href={"/register"}>Sign Up</Link>
-      </li>
-      <li>
-        <Link href={"/login"}>Login</Link>
-      </li>
+      {status === "authenticated" ? (
+        <>
+          <li>
+            <a onClick={handleLogOut}>Log Out</a>
+          </li>
+        </>
+      ) : (
+        <>
+          {" "}
+          <li>
+            <Link href={"/register"}>Sign Up</Link>
+          </li>
+          <li>
+            <Link href={"/login"}>Login</Link>
+          </li>
+        </>
+      )}
     </>
   );
   return (
@@ -54,15 +76,21 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              {navManu}
+              {navMenu}
             </ul>
           </div>
           <Link href={"/"} className="btn btn-ghost text-xl">
-            <Image src={"/assets/logo.svg"} alt="logo" width={64} height={60} />
+            <Image
+              src={"/assets/logo.svg"}
+              width={54}
+              height={54}
+              alt="logo"
+              // className="h-auto w-auto"
+            />
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navManu}</ul>
+          <ul className="menu menu-horizontal px-1">{navMenu}</ul>
         </div>
         <div className="navbar-end">
           <a className="btn btn-outline border-[#FF3811] text-[#FF3811] rounded-sm hover:bg-[#FF3811] hover:text-white">

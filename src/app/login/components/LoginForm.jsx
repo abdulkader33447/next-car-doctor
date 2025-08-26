@@ -1,14 +1,37 @@
 "use client";
 // import registerUser from "@/app/actions/auth/registerUser";
 import React from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
-  const handleSubmit = (e) => {
+  const router = useRouter();
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log({ email, password });
+    toast("submitting....",{duration:2000})
+    try {
+      const response = await signIn("credentials", {
+        email,
+        password,
+        callbackUrl: "/",
+        redirect: false,
+      });
+      if (response.ok) {
+        toast.success("Logged In successfully",{duration:4000})
+        router.push("/");
+      }else{
+        toast.error("Login failed")
+      }
+
+      // console.log({ email, password });
+    } catch (error) {
+      console.log(error);
+      toast.error("Login failed");
+    }
   };
   return (
     <div>
@@ -21,7 +44,9 @@ const LoginForm = () => {
           placeholder="Email"
         />
 
-        <label className="label sm:text-2xl text-xl sm:mb-4 mb-2">Password</label>
+        <label className="label sm:text-2xl text-xl sm:mb-4 mb-2">
+          Password
+        </label>
         <input
           name="password"
           type="password"
