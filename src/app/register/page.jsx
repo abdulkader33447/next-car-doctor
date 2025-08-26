@@ -26,7 +26,7 @@ const RegisterPage = () => {
 
         {/* right section */}
         <div className="flex-1">
-          <div className=" w-full border border-base-300 rounded-xl">
+          <div className=" w-full border-2 border-base-300 rounded-xl">
             <div className="card-body sm:py-18 sm:px-15">
               <h1 className="text-center text-lg md:text-3xl lg:text-5xl font-semibold">
                 Sign Up
@@ -56,9 +56,9 @@ const RegisterPage = () => {
                   <FcGoogle className="size-5" />
                 </Link>
               </div>
-              <p className="text-center mt-5 text-xl">
+              <p className="text-center mt-5 sm:text-xl">
                 Already have an account?{" "}
-                <Link className="text-[#FF3811] font-semibold" href={"/login"}>
+                <Link className="text-[#FF3811] underline font-semibold" href={"/login"}>
                   Login
                 </Link>
               </p>
