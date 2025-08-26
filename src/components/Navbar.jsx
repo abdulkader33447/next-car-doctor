@@ -34,6 +34,9 @@ const Navbar = () => {
       {status === "authenticated" ? (
         <>
           <li>
+            <Image src={session?.user?.image} width={50} height={50} alt="profile"/>
+          </li>
+          <li>
             <a onClick={handleLogOut}>Log Out</a>
           </li>
         </>
