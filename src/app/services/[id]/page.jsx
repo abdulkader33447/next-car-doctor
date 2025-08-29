@@ -1,15 +1,14 @@
-import dbConnect, { collectionNameObj } from "@/lib/dbConnect";
-import { ObjectId } from "mongodb";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { GoArrowRight } from "react-icons/go";
 
 const ServiceDetailPage = async ({ params }) => {
-  const p = await params;
-  const serviceCollection = dbConnect(collectionNameObj.servicesCollection);
+  const {id} =  params;
 
-  const data = await serviceCollection.findOne({ _id: new ObjectId(p.id) });
+  const res = await fetch(`http://localhost:3000/api/service/${id}`);
+  const data = await res.json();
+  console.log(data);
   return (
     <div className="lg:w-8/12 w-11/12 mx-auto">
       <section className="relative w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px] xl:h-[400px] overflow-hidden rounded-md">
@@ -23,7 +22,7 @@ const ServiceDetailPage = async ({ params }) => {
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
 
-        {/* text ovarlay */}
+        {/* text Overlay */}
         <div className="absolute lg:inset-30 md:inset-15 inset-6 flex items-center justify-normal">
           <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
             Service Details
@@ -40,8 +39,12 @@ const ServiceDetailPage = async ({ params }) => {
             alt="data.img"
             className="rounded-md md:h-70 lg:h-96"
           />
+          <h1 className="text-2xl font-bold my-3">{data.title}</h1>
+          <p>{data.description}</p>
+          
         </div>
-        <div className="bg-base-300 rounded-md  lg:p-10 p-6 h-fit">
+        <div>
+          <div className="bg-base-300 rounded-md  lg:p-10 p-6 h-fit">
           <h1 className="text-start text-2xl lg:text-4xl md:text-3xl font-bold mb-5">
             Services
           </h1>
@@ -78,6 +81,10 @@ const ServiceDetailPage = async ({ params }) => {
             </div>
           </div>
         </div>
+        <h1 className="text-2xl font-bold my-5">Price ${data.price}</h1>
+        <button className="btn w-full bg-[#FF3811] text-white rounded-md border-none">Proceed Checkout</button>
+        </div>
+        
       </div>
     </div>
   );
