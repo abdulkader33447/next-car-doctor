@@ -82,7 +82,8 @@ const ServiceDetailPage = async ({ params }) => {
           </div>
         </div>
         <h1 className="text-2xl font-bold my-5">Price ${data.price}</h1>
-        <button className="btn w-full bg-[#FF3811] text-white rounded-md border-none">Proceed Checkout</button>
+        <Link href={`/checkout/${data._id}`}>
+        <button className="btn w-full bg-[#FF3811] text-white rounded-md border-none">Proceed Checkout</button></Link>
         </div>
         
       </div>

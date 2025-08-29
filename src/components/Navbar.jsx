@@ -96,7 +96,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navMenu}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn btn-outline border-[#FF3811] text-[#FF3811] rounded-sm hover:bg-[#FF3811] hover:text-white">
+          <a className="btn btn-outline border-[#FF3811] text-[#FF3811] rounded-sm hover:bg-[#FF3811] hover:text-white  transition duration-300">
             Appointment
           </a>
         </div>
