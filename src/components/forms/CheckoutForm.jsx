@@ -9,7 +9,7 @@ const CheckoutForm = ({ data }) => {
   const { data: session } = useSession();
   //   console.log("user data", session);
 
-  const handleConfirm = (e) => {
+  const handleConfirm = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -18,9 +18,29 @@ const CheckoutForm = ({ data }) => {
     const due = form.due.value;
     const phone = form.phone.value;
     const address = form.address.value;
-    const formData = { name, date, email, due, phone, address };
+    const bookingPayload = {
+      customerName: name,
+      email,
+      date,
+      due,
+      phone,
+      address,
+
+      //extra
+      service_id: data._id,
+      service_name: data.title,
+      service_image: data.img,
+      // service_price:data.price,
+    };
     toast.success("Form submitted successfully");
-    console.log("booking form", formData);
+    console.log("booking form", bookingPayload);
+
+    const res = await fetch("http://localhost:3000/api/service", {
+      method: "POST",
+      body: JSON.stringify(bookingPayload),
+    });
+    const postedRes = await res.json()
+    // console.log(postedRes);
   };
 
   return (

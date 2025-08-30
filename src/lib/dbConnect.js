@@ -5,6 +5,7 @@ const uri = process.env.MONGODB_URI;
 export const collectionNameObj = {
   servicesCollection: "service",
   usersCollection: "car_doc_users",
+  bookingCollection:"booking_service"
 };
 
 const dbConnect = (collectionName) => {
